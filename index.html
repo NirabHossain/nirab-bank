@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+    <section id="login-area">
+        <h1 class="text-center">Welcome to Nirab Bank</h1>
+
+        <div id="vanish-area" class="submit-area">            
+            <h4>Login</h4>
+            <input type="text" class="form-control" name="" id="" placeholder="Md. Nirab Hossain"><br>
+            <input type="password" name="" id=""class="form-control" placeholder="Password"><br>
+            <button id="login-button" class="btn btn-success">Enter</button>
+        </div>
+    </section>
+
+    <section id="transaction-area">
+        
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="inn deposit">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currDeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="inn withdraw">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="currWithdraw">00</span> </h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="inn balance">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="currBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="inp amount-deposit">
+                    <h4>Deposit</h4>
+                    <input type="text" name="" id="deposit" class="form-control" placeholder="$ amount you want to deposit">
+                    <br>
+                    <button class="btn btn-warning" id="deposit-amount">Deposit</button>    
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="inp amount-withdraw">
+                    <h4>Withdraw</h4>
+                    <input type="text" name="" id="withdraw" class="form-control" placeholder="$ amount you want to withdraw">
+                    <br>
+                    <button class="btn btn-success" id="withdraw-amount">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    
+
+
+    </section>
+
+
+
+
+    <script>
+        const btn=document.getElementById('login-button');
+        btn.addEventListener("click",function(){
+            console.log("amake click marse");
+        
+            document.getElementById('login-area').style.display='none';  
+            
+            const transactionArea=document.getElementById('transaction-area').style.display='block';
+        })
+
+        const currBalance=document.getElementById('currBalance');
+
+        const depositBtn=document.getElementById('deposit-amount');
+        depositBtn.addEventListener('click',function(){
+            var d1=document.getElementById('deposit');
+            var display1= document.getElementById('currDeposit');
+            
+            const deposit=parseFloat(d1.value);
+            const currDeposit=parseFloat(display1.innerHTML);
+            const result = deposit+currDeposit;
+            const balance=parseFloat(currBalance.innerHTML);
+            const result2=balance+deposit;
+            
+            if(!isNaN(result)){
+                display1.innerHTML=result;
+                currBalance.innerHTML=result2;
+            }
+            d1.value="";            
+            
+        })
+
+        const withdrawBtn=document.getElementById('withdraw-amount');
+        withdrawBtn.addEventListener('click',function(){
+            d2=document.getElementById('withdraw');
+            display2= document.getElementById('currWithdraw');
+            
+            const withdraw=parseFloat(d2.value);
+            const currWithdraw=parseFloat(display2.innerHTML);
+            const res = withdraw+currWithdraw;
+            const balance=parseFloat(currBalance.innerHTML);
+            const res2=balance-withdraw;
+            
+            if(!isNaN(res)){
+                
+                if(res2>0){
+                    currBalance.innerHTML=res2;
+                    display2.innerHTML=res;
+                }
+                else alert('You don"t have enough money');
+            }
+            d2.value="";            
+            
+        })
+
+
+
+    </script>
+</body>
+</html>
